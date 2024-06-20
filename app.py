@@ -30,8 +30,8 @@ def extract_project_details(text):
     po_number = "#" + po_number_match.group(1) if po_number_match else ""
 
     # Extract PO amount
-    po_amount_match = re.search(r',\s*USD\s*(\d+)', text)
-    po_amount = "USD " + po_amount_match.group(1) if po_amount_match else ""
+    po_amount_match = re.search(r',\s*(USD|EUR|GBP)\s*(\d+)', text)
+    po_amount = po_amount_match.group(1) + " " + po_amount_match.group(2) if po_amount_match else ""
 
     return client_name, service_name, po_amount, word_count, translator, proofreader, po_number
 
